@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Omnix Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Exact Omnix Studio brand colors */
+  --bg:#0e1525;
+  --bg2:#131d35;
+  --bg3:#182240;
+  --card:#162038;
+  --cream:#fff1c1;
+  --pink:#eb468d;
+  --indigo:#505aa8;
+  --grad:linear-gradient(135deg,#fff1c1 0%,#eb468d 50%,#505aa8 100%);
+  --grad-text:linear-gradient(135deg,#fff1c1 0%,#eb468d 50%,#505aa8 100%);
+  --grad-btn:linear-gradient(135deg,#eb468d 0%,#505aa8 100%);
+  --white:#ffffff;
+  --text:#dce8ff;
+  --muted:#6b84b8;
+  --border:rgba(255,255,255,0.07);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4%;background:rgba(14,21,37,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo img{height:34px;width:200px;object-fit:contain;border-radius:8px}
+.nav-logo-text{font-size:1.1rem;font-weight:800;color:var(--white)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--grad-btn);color:#fff !important;padding:0.55rem 1.4rem;border-radius:100px;font-weight:600;font-size:0.85rem !important;transition:opacity 0.2s,transform 0.2s}
+.nav-cta:hover{opacity:0.88;transform:translateY(-1px)}
+
+.hero{padding:10rem 4% 7rem;max-width:1400px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(235,70,141,0.08);border:1px solid rgba(235,70,141,0.2);border-radius:100px;padding:0.4rem 1rem;font-size:0.78rem;color:var(--pink);font-weight:600;margin-bottom:1.8rem;letter-spacing:0.02em}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:clamp(2rem,6vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-0.04em;margin-bottom:1.4rem;color:var(--white)}
+.highlight{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--muted);margin:0 auto 2.2rem;line-height:1.7;max-width:600px}
+.hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center}
+.btn-pink{background:var(--grad-btn);color:#fff;padding:0.8rem 2rem;border-radius:100px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:transform 0.2s,opacity 0.2s;box-shadow:0 8px 32px rgba(235,70,141,0.3)}
+.btn-pink:hover{transform:translateY(-3px);opacity:0.9}
+.btn-outline{border:1px solid var(--border);color:var(--text);padding:0.8rem 2rem;border-radius:100px;font-size:0.9rem;font-weight:500;text-decoration:none;transition:border-color 0.2s,transform 0.2s}
+.btn-outline:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-3px)}
+
+
+
+section{max-width:1400px;margin:0 auto 5rem;padding:0 4%}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.section-title{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;color:var(--white);display:flex;align-items:center;gap:0.75rem}
+.section-pill{background:rgba(235,70,141,0.1);border:1px solid rgba(235,70,141,0.2);color:var(--pink);font-size:0.72rem;font-weight:600;padding:0.25rem 0.7rem;border-radius:100px;letter-spacing:0.04em}
+.section-count{font-size:0.8rem;color:var(--muted)}
+
+.web-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.web-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform 0.35s,border-color 0.35s,box-shadow 0.35s;cursor:pointer}
+.web-card:hover{transform:translateY(-8px);border-color:rgba(235,70,141,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.web-thumb-wrap{width:100%;aspect-ratio:16/10;overflow:hidden;background:var(--bg3);position:relative}
+.web-thumb-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.5s;display:block}
+.web-card:hover .web-thumb-wrap img{transform:scale(1.04)}
+.web-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;color:var(--muted);font-size:0.78rem}
+.web-placeholder-icon{font-size:2rem;opacity:0.3}
+.web-tag{position:absolute;top:1rem;right:1rem;background:rgba(14,21,37,0.88);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;font-weight:600;color:var(--muted)}
+.web-info{padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.web-name{font-weight:800;font-size:1rem;color:var(--white)}
+.web-type{font-size:0.78rem;color:var(--muted);margin-top:0.2rem}
+.arrow-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.9rem;transition:all 0.25s;flex-shrink:0}
+.web-card:hover .arrow-btn{background:var(--grad-btn);border-color:transparent;color:#fff}
+
+.logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.logo-card{border:1px solid var(--border);border-radius:20px;overflow:hidden;aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;cursor:pointer}
+.logo-card:hover{transform:translateY(-5px);border-color:rgba(235,70,141,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+.logo-card img{width:100%;height:100%;object-fit:cover}
+.logo-hover-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(14,21,37,0.96),transparent);padding:1.2rem 1rem 0.8rem;font-size:0.73rem;color:var(--muted);font-weight:500;opacity:0;transition:opacity 0.25s;text-align:center}
+.logo-card:hover .logo-hover-label{opacity:1}
+
+.creative-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.creative-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform 0.3s,border-color 0.3s}
+.creative-card:hover{transform:translateY(-5px);border-color:rgba(235,70,141,0.25)}
+.creative-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.creative-info{padding:1rem 1.2rem}
+.creative-name{font-size:0.88rem;font-weight:700;color:var(--white)}
+.creative-sub{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem;transition:transform 0.3s,border-color 0.3s}
+.service-card:hover{transform:translateY(-4px);border-color:rgba(235,70,141,0.25)}
+.svc-icon{width:44px;height:44px;border-radius:12px;background:rgba(235,70,141,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem}
+.svc-name{font-size:1rem;font-weight:800;color:var(--white);margin-bottom:0.5rem}
+.svc-desc{font-size:0.82rem;color:var(--muted);line-height:1.6}
+.svc-price{margin-top:1.2rem;font-size:0.85rem;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.process-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.process-step{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem}
+.step-num{font-size:2rem;font-weight:800;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:1rem}
+.step-title{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
+.step-desc{font-size:0.8rem;color:var(--muted);line-height:1.6}
+
+.cta-wrap{max-width:1400px;margin:0 auto 5rem;padding:0 4%}
+.cta-box{background:var(--bg2);border:1px solid rgba(235,70,141,0.15);border-radius:28px;padding:5rem 4rem;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(235,70,141,0.07) 0%,rgba(80,90,168,0.07) 50%,transparent 70%);pointer-events:none}
+.cta-box h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:1rem;position:relative}
+.cta-box p{color:var(--muted);margin-bottom:2.5rem;position:relative}
+.cta-contacts{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;position:relative}
+.contact-chip{display:flex;align-items:center;gap:0.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:100px;padding:0.6rem 1.2rem;font-size:0.85rem;color:var(--muted);text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.contact-chip:hover{border-color:rgba(235,70,141,0.4);color:var(--white)}
+
+footer{border-top:1px solid var(--border);padding:2rem 4%;display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+footer p{font-size:0.8rem;color:var(--muted)}
+.footer-brand{font-size:0.9rem;font-weight:800;color:var(--white)}
+
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* CONTACT SECTION */
+.cta-box{background:var(--bg2);border:1px solid rgba(235,70,141,0.15);border-radius:28px;padding:4rem;position:relative;overflow:hidden;text-align:left}
+.contact-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;position:relative}
+.contact-left h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:1rem;line-height:1.15}
+.contact-left p{color:var(--muted);font-size:0.95rem;margin-bottom:2rem;line-height:1.7}
+.contact-info-list{display:flex;flex-direction:column;gap:1rem}
+.contact-info-item{display:flex;align-items:center;gap:1rem;text-decoration:none;padding:0.9rem 1.1rem;background:var(--bg3);border:1px solid var(--border);border-radius:14px;transition:border-color 0.2s,transform 0.2s}
+.contact-info-item:hover{border-color:rgba(235,70,141,0.3);transform:translateX(4px)}
+.contact-info-icon{font-size:1.2rem;flex-shrink:0;width:36px;text-align:center}
+.contact-info-label{font-size:0.72rem;color:var(--muted);font-weight:500;margin-bottom:0.15rem;letter-spacing:0.03em}
+.contact-info-value{font-size:0.88rem;color:var(--white);font-weight:600}
+
+/* FORM */
+.contact-form-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+.form-group label{font-size:0.78rem;font-weight:600;color:var(--muted);letter-spacing:0.03em}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:0.75rem 1rem;
+  color:var(--white);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  width:100%;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--muted);opacity:0.6}
+.form-group select{appearance:none;cursor:pointer;color:var(--muted)}
+.form-group select option{background:var(--bg2);color:var(--white)}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:rgba(235,70,141,0.5);box-shadow:0 0 0 3px rgba(235,70,141,0.08)}
+.form-group textarea{min-height:110px;resize:vertical;line-height:1.6}
+.form-submit{
+  width:100%;
+  background:var(--grad-btn);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:0.9rem 2rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.95rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:opacity 0.2s,transform 0.2s;
+  box-shadow:0 8px 28px rgba(235,70,141,0.25);
+  margin-top:0.5rem;
+}
+.form-submit:hover{opacity:0.9;transform:translateY(-2px)}
+.form-submit:active{transform:translateY(0)}
+.form-submit.sent{background:linear-gradient(135deg,#2ecc71,#27ae60);box-shadow:0 8px 28px rgba(46,204,113,0.25)}
+.form-note{font-size:0.75rem;color:var(--muted);text-align:center;margin-top:0.8rem}
+
+@media(max-width:900px){
+  .contact-inner{grid-template-columns:1fr;gap:2.5rem}
+  .cta-box{padding:2.5rem 2rem}
+}
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr}
+  .cta-box{padding:2rem 1.5rem;border-radius:20px}
+  .contact-form-wrap{padding:1.5rem}
+}
+
+@media(max-width:900px){
+  .hero{padding-top:8rem;padding-bottom:3rem}
+  .web-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .logo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .creative-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .process-row{grid-template-columns:repeat(2,1fr)}
+  .cta-box{padding:3.5rem 2.5rem}
+}
+@media(max-width:600px){
+  nav{padding:1rem 5%}
+  .nav-links a:not(.nav-cta){display:none}
+  .nav-logo-text{font-size:1rem}
+  .hero{padding:7rem 5% 3rem}
+  .hero h1{font-size:2.8rem;letter-spacing:-0.03em}
+  .hero-badge{font-size:0.72rem;padding:0.35rem 0.8rem}
+  .hero-sub{font-size:0.92rem}
+  .hero-btns{flex-direction:column;gap:0.75rem}
+  .btn-pink,.btn-outline{text-align:center;padding:0.85rem 1.5rem;width:100%}
+  section{margin-bottom:3rem;padding:0 5%}
+  .section-header{flex-wrap:wrap;gap:0.5rem}
+  .section-title{font-size:1.1rem}
+  .web-grid{grid-template-columns:1fr}
+  .web-card{border-radius:16px}
+  .web-name{font-size:0.95rem}
+  .logo-grid{grid-template-columns:repeat(3,1fr);gap:0.6rem}
+  .logo-card{padding:1rem;border-radius:14px}
+  .creative-grid{grid-template-columns:1fr 1fr;gap:0.6rem}
+  .creative-card{border-radius:14px}
+  .creative-name{font-size:0.8rem}
+  .creative-sub{font-size:0.7rem}
+  .services-grid{grid-template-columns:1fr}
+  .service-card{border-radius:16px;padding:1.4rem}
+  .process-row{grid-template-columns:1fr 1fr;gap:0.6rem}
+  .process-step{padding:1.2rem;border-radius:14px}
+  .step-num{font-size:1.5rem}
+  .step-title{font-size:0.85rem}
+  .step-desc{font-size:0.75rem}
+  .cta-wrap{padding:0 5%}
+  .cta-box{padding:2.5rem 1.5rem;border-radius:20px}
+  .cta-box h2{font-size:1.8rem}
+  .cta-contacts{flex-direction:column;gap:0.75rem;align-items:stretch}
+  .contact-chip{justify-content:center}
+  footer{padding:1.5rem 5%;flex-direction:column;gap:0.75rem;text-align:center}
+  footer p{font-size:0.75rem}
+  .footer-brand{display:none}
+}
+@media(max-width:380px){
+  .hero h1{font-size:2.2rem}
+  .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .creative-grid{grid-template-columns:1fr}
+  .process-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://omnixstudio.in" class="nav-logo">
+    <img src="./assets/Omnixstudio logo.png" alt="Omnix logo">
+    <!-- <span class="nav-logo-text">Omnix Studio</span> -->
+  </a>
+  <div class="nav-links">
+    <a href="#websites">Work</a>
+    <a href="#logos">Logos</a>
+    <a href="#services">Services</a>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left fade-up">
+    <div class="hero-badge"><span class="dot"></span>AVAILABLE FOR PROJECTS</div>
+    <h1>We craft digital<br><span class="highlight">identities</span><br>that convert.</h1>
+    <p class="hero-sub">Websites, branding, and creative design for businesses that want to look premium — without the agency price tag.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-pink">Start a Project</a>
+      <a href="#websites" class="btn-outline">See Our Work ↓</a>
+    </div>
+  </div>
+
+</div>
+
+<section id="websites" class="fade-up">
+  <div class="section-header">
+    <h2 class="section-title">Website Design <span class="section-pill">WEB</span></h2>
+    <!-- <span class="section-count">3 projects</span> -->
+  </div>
+  <div class="web-grid">
+    <div class="web-card">
+      <div class="web-thumb-wrap">
+        <img src="./assets/Realign.jpg" alt="Re:Align website" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="web-placeholder" style="display:none"><span class="web-placeholder-icon">🌿</span><span>Add Realign.png</span></div>
+        <span class="web-tag">Wix</span>
+      </div>
+      <div class="web-info">
+        <div><div class="web-name">Re:Align</div><div class="web-type">Wellness & Mindfulness Brand</div></div>
+        <div class="arrow-btn">↗</div>
+      </div>
+    </div>
+    <div class="web-card">
+      <div class="web-thumb-wrap">
+        <img src="./assets/Greenshift.jpg" alt="Greenshift website" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="web-placeholder" style="display:none"><span class="web-placeholder-icon">🌱</span><span>Add Greenshift_Client.png</span></div>
+        <span class="web-tag">WordPress</span>
+      </div>
+      <div class="web-info">
+        <div><div class="web-name">Greenshift</div><div class="web-type">Sustainability Consulting · Singapore</div></div>
+        <div class="arrow-btn">↗</div>
+      </div>
+    </div>
+    <div class="web-card">
+      <div class="web-thumb-wrap">
+        <img src="./assets/Wardah.jpg" alt="Wardah website" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="web-placeholder" style="display:none"><span class="web-placeholder-icon">✨</span><span>Add Life_Coach_Website.png</span></div>
+        <span class="web-tag">WordPress</span>
+      </div>
+      <div class="web-info">
+        <div><div class="web-name">Wardah Harharah</div><div class="web-type">Personal Brand · Women's Coach</div></div>
+        <div class="arrow-btn">↗</div>
+      </div>
+    </div>
+    <div class="web-card">
+      <div class="web-thumb-wrap">
+        <img src="./assets/Food Website.jpg" alt="Wardah website" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="web-placeholder" style="display:none"><span class="web-placeholder-icon">✨</span><span>Add Life_Coach_Website.png</span></div>
+        <span class="web-tag">WordPress</span>
+      </div>
+      <div class="web-info">
+        <div><div class="web-name">Cafe Website</div><div class="web-type">Food Cafe</div></div>
+        <div class="arrow-btn">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logos" class="fade-up">
+  <div class="section-header">
+    <h2 class="section-title">Logo & Brand Identity <span class="section-pill">BRANDING</span></h2>
+    <!-- <span class="section-count">6 logos</span> -->
+  </div>
+  <div class="logo-grid">
+    <div class="logo-card" style="background:#f4f4f0">
+      <img src="./assets/Pure.jpg" alt="Pure wellness logo">
+      <div class="logo-hover-label" style="color:#333">Pure · Wellness Brand</div>
+    </div>
+    <div class="logo-card" style="background:#f4f4f0">
+      <img src="./assets/GYM.jpg" alt="Pure brand variant">
+      <div class="logo-hover-label" style="color:#333">Mascular Mastiff · Gym</div>
+    </div>
+    
+    <div class="logo-card" style="background:#ffffff">
+      <img src="/assets/Beyond.jpg" alt="Beyond The Code Podcast logo">
+      <div class="logo-hover-label" style="color:#333">Beyond The Code · Podcast</div>
+    </div>
+    <div class="logo-card" style="background:#0d1829">
+      <img src="./assets/launchEdge.jpg" alt="LaunchEdge logo">
+      <div class="logo-hover-label">LaunchEdge · Startup</div>
+    </div>
+    
+  </div>
+</section>
+
+<section id="creatives" class="fade-up">
+  <div class="section-header">
+    <h2 class="section-title">Marketing & Social Creatives <span class="section-pill">DESIGN</span></h2>
+    <!-- <span class="section-count">4 pieces</span> -->
+  </div>
+  <div class="creative-grid">
+    <div class="creative-card">
+      <img src="./assets/Socials.jpg" alt="LaunchEdge social post">
+      <div class="creative-info"><div class="creative-name">From Idea to Scaling</div><div class="creative-sub">LaunchEdge · Instagram Post</div></div>
+    </div>
+    <div class="creative-card">
+      <img src="./assets/Posts/Social-Beyond the code.png" alt="Service launch post">
+      <div class="creative-info"><div class="creative-name">Beyond The Code Podcast</div><div class="creative-sub">Social Media Posts</div></div>
+    </div>
+    <div class="creative-card">
+      <img src="./assets/Posts/Gym posts.png" alt="Real estate banner">
+      <div class="creative-info"><div class="creative-name">Muscular Fitness Gym</div><div class="creative-sub">Social Media Posts</div></div>
+    </div>
+    <div class="creative-card">
+      <img src="./assets/Posts/Pure.png" alt="Website promo post">
+      <div class="creative-info"><div class="creative-name">Pure Wellness</div><div class="creative-sub">Organic products brand</div></div>
+    </div>
+    
+  </div>
+</section>
+
+<section style="padding: 60px 40px; background: #0d1117;">
+  <p style="color: #ff6fb0; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">★ CLIENT LOVE</p>
+  <h2 style="color: #fff; font-size: 28px; font-weight: 700; margin-bottom: 40px;">What clients say</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+
+    <div style="background: #161b27; border: 1px solid #1e2535; border-radius: 12px; padding: 24px;">
+      <p style="color: #ccc; font-size: 14px; line-height: 1.7; margin-bottom: 16px;">"Omnix delivered our brand identity in under a week. The logo, colours, and brand guide were exactly what we envisioned — professional and modern."</p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ff6fb0,#a855f7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px;">AK</div>
+        <div>
+          <p style="color:#fff;font-size:13px;font-weight:600;margin:0;">Amit K.</p>
+          <p style="color:#666;font-size:12px;margin:0;">Founder, LaunchEdge</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #161b27; border: 1px solid #1e2535; border-radius: 12px; padding: 24px;">
+      <p style="color: #ccc; font-size: 14px; line-height: 1.7; margin-bottom: 16px;">"Our new website has already brought in 3 inbound leads this month. The design is clean, fast, and looks great on every device."</p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px;">SR</div>
+        <div>
+          <p style="color:#fff;font-size:13px;font-weight:600;margin:0;">Sneha R.</p>
+          <p style="color:#666;font-size:12px;margin:0;">Owner, Pure Wellness</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #161b27; border: 1px solid #1e2535; border-radius: 12px; padding: 24px;">
+      <p style="color: #ccc; font-size: 14px; line-height: 1.7; margin-bottom: 16px;">"Social media posts used to take us hours. Omnix gave us ready-to-use templates that look premium every single time."</p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ef4444);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px;">RV</div>
+        <div>
+          <p style="color:#fff;font-size:13px;font-weight:600;margin:0;">Rohit V.</p>
+          <p style="color:#666;font-size:12px;margin:0;">Muscular Mastiff Gym</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="services" class="fade-up">
+  <div class="section-header">
+    <h2 class="section-title">What We Offer <span class="section-pill">SERVICES</span></h2>
+    <!-- <span class="section-count">Pune & Remote</span> -->
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon">🌐</div>
+      <div class="svc-name">Website Design</div>
+      <div class="svc-desc">WordPress, Wix, or custom HTML/CSS. Mobile-first, fast-loading, built to convert visitors into customers.</div>
+      <!-- <div class="svc-price">Starting ₹8,000</div> -->
+       <a href="#contact" style="color: #ff6fb0; font-size: 13px; font-weight: 600; text-decoration: none;"><br>Get a quote →</a>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">✦</div>
+      <div class="svc-name">Logo & Branding</div>
+      <div class="svc-desc">Complete brand identity — logo, colour palette, typography, and brand guidelines as ready-to-use files.</div>
+      <!-- <div class="svc-price">Starting ₹5,000</div> -->
+       <a href="#contact" style="color: #ff6fb0; font-size: 13px; font-weight: 600; text-decoration: none;"><br>Get a quote →</a>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">📱</div>
+      <div class="svc-name">Social Media Design</div>
+      <div class="svc-desc">Posts, stories, banners, and flyers that stop the scroll and communicate your brand clearly every time.</div>
+      <!-- <div class="svc-price">Starting ₹3,000/month</div> -->
+       <a href="#contact" style="color: #ff6fb0; font-size: 13px; font-weight: 600; text-decoration: none;"><br>Get a quote →</a>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🚀</div>
+      <div class="svc-name">Full Brand Package</div>
+      <div class="svc-desc">Logo + Website + 5 social templates. Everything a business needs to launch with a professional presence.</div>
+      <!-- <div class="svc-price">Starting ₹20,000</div> -->
+       <a href="#contact" style="color: #ff6fb0; font-size: 13px; font-weight: 600; text-decoration: none;"><br>Get a quote →</a>
+    </div>
+  </div>
+</section>
+
+<section class="fade-up">
+  <div class="section-header">
+    <h2 class="section-title">How We Work <span class="section-pill">PROCESS</span></h2>
+  </div>
+  <div class="process-row">
+    <div class="process-step"><div class="step-num">01</div><div class="step-title">We Listen First</div><div class="step-desc">We understand your business, goals, and audience before touching any design tool.</div></div>
+    <div class="process-step"><div class="step-num">02</div><div class="step-title">Design That Fits You</div><div class="step-desc">First draft in 3–5 days. You review, we refine until it feels exactly right.</div></div>
+    <div class="process-step"><div class="step-num">03</div><div class="step-title">You Shape It</div><div class="step-desc">Two rounds of revisions included. We don't stop until you're genuinely happy.</div></div>
+    <div class="process-step"><div class="step-num">04</div><div class="step-title">You Shape It</div><div class="step-desc">Final files, credentials, and a walkthrough so you're fully in control.</div></div>
+  </div>
+</section>
+
+<div class="cta-wrap fade-up" id="contact">
+  <div class="cta-box">
+    <div class="cta-glow"></div>
+    <div class="contact-inner">
+
+      <!-- LEFT: Info -->
+      <div class="contact-left">
+        <div class="hero-badge" style="margin-bottom:1.2rem"><span class="dot"></span>AVAILABLE FOR PROJECTS</div>
+        <h2>Ready to build<br>something great?</h2>
+        <p>Tell us about your project — we'll respond within 24 hours.</p>
+
+        <div class="contact-info-list">
+          <a href="mailto:hello@omnixstudio.in" class="contact-info-item">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-value">hello@omnixstudio.in</div>
+            </div>
+          </a>
+          <a href="tel:+919970938376" class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-value">+91 99709 38376</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/omnix_studio" class="contact-info-item">
+            <div class="contact-info-icon">📷</div>
+            <div>
+              <div class="contact-info-label">Instagram</div>
+              <div class="contact-info-value">@omnix_studio</div>
+            </div>
+          </a>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-value">Pune, Maharashtra</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-right">
+        <div class="contact-form-wrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Rahul Sharma">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="+91 98765 43210">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@yourbusiness.com">
+          </div>
+          <div class="form-group">
+            <label>What do you need?</label>
+            <select>
+              <option value="" disabled selected>Select a service</option>
+              <option>Website Design</option>
+              <option>Logo & Branding</option>
+              <option>Social Media Design</option>
+              <option>Full Brand Package</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell us about your project</label>
+            <textarea placeholder="Brief description of your business and what you're looking for..."></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit(this)">Send Message →</button>
+          <div class="form-note">We respond within 24 hours. No spam, ever.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Omnix Studio. All rights reserved.</p>
+  <span class="footer-brand"> <img src="./assets/Omnixstudio logo.png" width="100px" alt="">  </span>
+  <p>Website · Branding · Social Media</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+function handleSubmit(btn){
+  const form = btn.closest('.contact-form-wrap');
+  const inputs = form.querySelectorAll('input, select, textarea');
+  let valid = true;
+  inputs.forEach(inp => {
+    if(!inp.value.trim()){
+      inp.style.borderColor = 'rgba(235,70,141,0.6)';
+      valid = false;
+    } else {
+      inp.style.borderColor = '';
+    }
+  });
+  if(!valid) return;
+  btn.textContent = '✓ Message Sent!';
+  btn.classList.add('sent');
+  btn.disabled = true;
+  inputs.forEach(inp => { inp.value = ''; inp.style.borderColor = ''; });
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.classList.remove('sent');
+    btn.disabled = false;
+  }, 4000);
+}
+</script>
+</body>
+</html>
